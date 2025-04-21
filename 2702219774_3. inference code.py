@@ -27,6 +27,11 @@ def main():
     if 'new_booking_started' not in st.session_state:
         st.session_state.new_booking_started = False
 
+    if 'arrival_month' not in st.session_state:
+        st.session_state.arrival_month = 1    #default januari
+    if 'prev_arrival_date' not in st.session_state:
+        st.session_state.prev_arrival_date = None
+        
     #button New Booking
     if st.button('New Booking'):
         #reset semua session state yang dipakai
@@ -36,11 +41,7 @@ def main():
         st.session_state.new_booking_started = True
         st.session_state.booking_id = generate_booking_id()
         st.session_state.pop('avg_price_per_room', None)    #reset harga
-
-    if 'arrival_month' not in st.session_state:
-        st.session_state.arrival_month = 1    #default januari
-    if 'prev_arrival_date' not in st.session_state:
-        st.session_state.prev_arrival_date = None
+        
         
     #simpan state button New Booking
     if st.session_state.new_booking_started:
