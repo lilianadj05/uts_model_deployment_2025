@@ -31,7 +31,11 @@ def main():
     if st.button('New Booking'):
         st.session_state.new_booking_started = True
         st.session_state.booking_id = generate_booking_id()
+        st.session_state.pop('avg_price_per_room', None)    #reset harga
 
+    if 'arrival_month' not in st.session_state:
+        st.session_state.arrival_month = 1    #default januari
+        
     #simpan state button New Booking
     if st.session_state.new_booking_started:
         booking_id = st.session_state.booking_id
@@ -90,7 +94,8 @@ def main():
             arrival_year = arrival_date.year
             arrival_month = arrival_date.month
             arrival_day = arrival_date.day
-        
+            st.session_state.arrival_month = arrival_month
+            
 
         market_segment_type = st.selectbox("Market Segment", ["Online", "Offline", "Corporate", "Aviation", "Complementary"])
         
@@ -107,26 +112,25 @@ def main():
         
 
         #avg_price_per_room berdasarkan arrival_month
-        month_price_range = {
-            1: (100, 250),    
-            2: (60, 160),    
-            3: (80, 200),    
-            4: (100, 250),   
-            5: (120, 300),   
-            6: (150, 400),  
-            7: (200, 500),   
-            8: (200, 550),   
-            9: (130, 350),   
-            10: (100, 250),  
-            11: (70, 200),   
-            12: (200, 500),   
-        }
-        if 'avg_price_per_room' not in st.session_state and 'arrival_month' in locals():
+        if 'avg_price_per_room' not in st.session_state or st.session_state.arrival_month != arrival_month:
+            month_price_range = {
+                1: (100, 250),    
+                2: (60, 160),    
+                3: (80, 200),    
+                4: (100, 250),   
+                5: (120, 300),   
+                6: (150, 400),  
+                7: (200, 500),   
+                8: (200, 550),   
+                9: (130, 350),   
+                10: (100, 250),  
+                11: (70, 200),   
+                12: (200, 500),   
+            }
             min_price, max_price = month_price_range[arrival_month]
             st.session_state.avg_price_per_room = round(random.uniform(min_price, max_price), 0)
-        if 'avg_price_per_room' in st.session_state:
-            avg_price_per_room = st.session_state.avg_price_per_room
-            st.write(f"Average Price per Room: {avg_price_per_room}")
+        avg_price_per_room = st.session_state.avg_price_per_room
+        st.write(f"Average Price per Room: {avg_price_per_room}")
 
         
         no_of_special_requests = st.number_input("Number of Special Requests", min_value=0, value=0)
