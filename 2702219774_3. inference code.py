@@ -34,13 +34,15 @@ def main():
         
     #button New Booking
     if st.button('New Booking'):
-        #bersihkan semua session state kecuali model dan encoder
+        new_booking_flag = True
+        new_booking_id = generate_booking_id()
+        
         for key in list(st.session_state.keys()):
             del st.session_state[key]
         
         # Inisialisasi ulang state yang diperlukan
-        st.session_state.new_booking_started = True
-        st.session_state.booking_id = generate_booking_id()
+        st.session_state.new_booking_started = new_booking_flag
+        st.session_state.booking_id = new_booking_id
         st.session_state.pop('avg_price_per_room', None)    #reset harga
         st.experimental_rerun()
         
