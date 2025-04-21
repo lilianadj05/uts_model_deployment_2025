@@ -85,7 +85,7 @@ def main():
         
 
         required_car_parking_space = st.radio("Car Parking Required", ["Yes", "No"], key='parking_space')
-        if required_car_parking_space == "-Yes":
+        if required_car_parking_space == "Yes":
             required_car_parking_space = 1
         else:
             required_car_parking_space = 0
@@ -137,7 +137,7 @@ def main():
         
 
         repeated_guest = st.radio("Repeated Guest", ["Yes", "No"], key='repeated_guest')
-        if repeated_guest == "-Yes":
+        if repeated_guest == "Yes":
             repeated_guest = 1
         else:
             repeated_guest = 0
