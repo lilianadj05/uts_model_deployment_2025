@@ -67,7 +67,7 @@ def main():
         st.session_state.special_requests = 0
         
         # Force page refresh
-        st.experimental_rerun()
+        st.rerun()
         
     #simpan state button New Booking
     if st.session_state.new_booking_started:
