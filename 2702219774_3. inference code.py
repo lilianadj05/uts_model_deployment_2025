@@ -140,7 +140,6 @@ def main():
         
         
         user_input = {
-            'Booking_ID': int(booking_id),
             'no_of_adults': int(no_of_adults),
             'no_of_children': int(no_of_children),
             'no_of_weekend_nights': int(no_of_weekend_nights),
@@ -165,8 +164,6 @@ def main():
         df['avg_price_per_room'] = df['avg_price_per_room'].fillna(df['avg_price_per_room'].median())                      
         df['type_of_meal_plan'] = df['type_of_meal_plan'].fillna(df['type_of_meal_plan'].mode()[0])
         df['required_car_parking_space'] = df['required_car_parking_space'].fillna(df['required_car_parking_space'].mode()[0])
-        
-        df.drop('Booking_ID', axis=1, inplace=True)
 
         df = df[df['no_of_adults'] != 0]
 
