@@ -177,6 +177,7 @@ def main():
         
 
         if st.button('Make Prediction'):
+            st.write(df.dtypes)
             features = df      
             result = make_prediction(features)
             st.success(f'Booking Status: {result}')
