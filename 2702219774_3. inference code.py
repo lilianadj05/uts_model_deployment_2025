@@ -35,6 +35,8 @@ def main():
 
     if 'arrival_month' not in st.session_state:
         st.session_state.arrival_month = 1    #default januari
+    if 'prev_arrival_date' not in st.session_state:
+        st.session_state.prev_arrival_date = None
         
     #simpan state button New Booking
     if st.session_state.new_booking_started:
@@ -112,7 +114,7 @@ def main():
         
 
         #avg_price_per_room berdasarkan arrival_month
-        if 'avg_price_per_room' not in st.session_state or st.session_state.arrival_month != arrival_month:
+        if 'avg_price_per_room' not in st.session_state or st.session_state.arrival_month != arrival_month or st.session_state.prev_arrival_date != arrival_date:
             month_price_range = {
                 1: (100, 250),    
                 2: (60, 160),    
@@ -129,6 +131,7 @@ def main():
             }
             min_price, max_price = month_price_range[arrival_month]
             st.session_state.avg_price_per_room = round(random.uniform(min_price, max_price), 0)
+            st.session_state.prev_arrival_date = arrival_date
         avg_price_per_room = st.session_state.avg_price_per_room
         st.write(f"Average Price per Room: {avg_price_per_room}")
 
@@ -181,7 +184,7 @@ def main():
 
 
 def make_prediction(features):
-    input_array = np.array(features).reshape(1, -1)
+    input_array = np.array([features])
     prediction = model.predict(input_array)
     return prediction[0]
 
