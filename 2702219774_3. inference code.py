@@ -150,7 +150,7 @@ def main():
             'lead_time': int(lead_time),
             'arrival_year': [arrival_year],
             'arrival_month': int(arrival_month),
-            'arrival_date': int(arrival_date),
+            'arrival_date': int(arrival_day),
             'market_segment_type': [market_segment_type],
             'repeated_guest': int(repeated_guest),
             'no_of_previous_cancellations': int(no_of_previous_cancellations),
