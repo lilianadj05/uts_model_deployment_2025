@@ -19,6 +19,10 @@ encoder = joblib.load('encoders_oop.pkl')
 def main():
     st.title('Hotel Booking Cancellation Prediction')
 
+    #reset semua session state yang dipakai
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+        
     #random booking ID
     def generate_booking_id():
         return f"BK{random.randint(1000, 9999)}"
