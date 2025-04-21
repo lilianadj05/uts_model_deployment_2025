@@ -171,7 +171,8 @@ def main():
         for col in to_encode:
             enc = encoder[col]
             df[col] = enc.transform(df[col])
-
+        df['type_of_meal_plan'] = encoder['type_of_meal_plan'].transform(df['type_of_meal_plan'])
+        
         if st.button('Make Prediction'):
             features = df      
             result = make_prediction(features)
