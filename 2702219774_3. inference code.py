@@ -122,7 +122,8 @@ def main():
             12: (200, 500),   
         }
         min_price, max_price = month_price_range[arrival_month]
-        st.session_state.avg_price_per_room = round(random.uniform(min_price, max_price), 0)
+        if 'avg_price_per_room' not in st.session_state or st.session_state.new_booking_started:
+            st.session_state.avg_price_per_room = round(random.uniform(min_price, max_price), 0)
         avg_price_per_room = st.session_state.avg_price_per_room
         st.write(f"Average Price per Room: {avg_price_per_room}")
 
@@ -162,8 +163,8 @@ def main():
 
         to_encode = ['type_of_meal_plan', 'room_type_reserved', 'market_segment_type', 'arrival_year']
         for col in to_encode:
-            encoder = encoder[col]
-            df[col] = encoder.transform(df[col])
+            enc = encoder[col]
+            df[col] = enc.transform(df[col])
         
 
         if st.button('Make Prediction'):
