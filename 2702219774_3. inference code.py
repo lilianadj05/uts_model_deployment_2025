@@ -23,8 +23,16 @@ def main():
     def generate_booking_id():
         return f"BK{random.randint(1000, 9999)}"
     
+    #inisialisasi session_state
+    if 'new_booking_started' not in st.session_state:
+        st.session_state.new_booking_started = False
+
     #button New Booking
     if st.button('New Booking'):
+        st.session_state.new_booking_started = True
+
+    #simpan state button New Booking
+    if st.session_state.new_booking_started:
         booking_id = generate_booking_id()
         st.write(f"New Booking ID: {booking_id}")
 
