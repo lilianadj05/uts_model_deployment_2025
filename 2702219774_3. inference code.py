@@ -184,8 +184,7 @@ def main():
 
 
 def make_prediction(features):
-    input_array = np.array([features])
-    prediction = model.predict(input_array)
+    prediction = model.predict(features)
     return prediction[0]
 
 
