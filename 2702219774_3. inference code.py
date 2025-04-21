@@ -121,12 +121,14 @@ def main():
             11: (70, 200),   
             12: (200, 500),   
         }
-        min_price, max_price = month_price_range[arrival_month]
-        if 'avg_price_per_room' not in st.session_state or st.session_state.new_booking_started:
+        if 'avg_price_per_room' not in st.session_state and 'arrival_month' in locals():
+            min_price, max_price = month_price_range[arrival_month]
             st.session_state.avg_price_per_room = round(random.uniform(min_price, max_price), 0)
-        avg_price_per_room = st.session_state.avg_price_per_room
-        st.write(f"Average Price per Room: {avg_price_per_room}")
+        if 'avg_price_per_room' in st.session_state:
+            avg_price_per_room = st.session_state.avg_price_per_room
+            st.write(f"Average Price per Room: {avg_price_per_room}")
 
+        
         no_of_special_requests = st.number_input("Number of Special Requests", min_value=0, value=0)
         
         
