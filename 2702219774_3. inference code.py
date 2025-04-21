@@ -30,10 +30,10 @@ def main():
     #button New Booking
     if st.button('New Booking'):
         st.session_state.new_booking_started = True
+        st.session_state.booking_id = generate_booking_id()
 
     #simpan state button New Booking
     if st.session_state.new_booking_started:
-        booking_id = generate_booking_id()
         st.write(f"New Booking ID: {booking_id}")
 
 
