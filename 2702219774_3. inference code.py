@@ -23,51 +23,45 @@ def main():
     def generate_booking_id():
         return f"BK{random.randint(1000, 9999)}"
     
-    #inisialisasi session_state
+    #inisialisasi session_state saat pertama load
     if 'new_booking_started' not in st.session_state:
         st.session_state.new_booking_started = False
-
-    if 'arrival_month' not in st.session_state:
-        st.session_state.arrival_month = 1    #default januari
-    if 'prev_arrival_date' not in st.session_state:
+        st.session_state.arrival_month = 1
         st.session_state.prev_arrival_date = None
         
     #button New Booking
     if st.button('New Booking'):
-        # Generate new booking ID
         new_booking_id = generate_booking_id()
-        
-        # Store only what you need to keep
         booking_started = True
         
-        # Clear everything else
+        #clear semua keys -> reset semua input
         for key in list(st.session_state.keys()):
             del st.session_state[key]
         
-        # Reinitialize necessary states with default values
         st.session_state.new_booking_started = booking_started
         st.session_state.booking_id = new_booking_id
         st.session_state.arrival_month = 1
         st.session_state.prev_arrival_date = None
         
-        # Set default values for all form inputs
-        # st.session_state.no_of_adults = 2
-        # st.session_state.no_of_children = 0
-        # st.session_state.no_of_weekend_nights = 1
-        # st.session_state.no_of_week_nights = 2
-        # st.session_state.type_of_meal_plan = "-- Select Meal Plan --"
-        # st.session_state.parking_space = "No"
-        # st.session_state.room_type_reserved = "Room_Type 1"
-        # st.session_state.booking_date = datetime.date(2017, 1, 1)
-        # st.session_state.arrival_date = datetime.date(2017, 1, 8)
-        # st.session_state.market_segment = "Online"
-        # st.session_state.repeated_guest = "No"
-        # st.session_state.prev_cancellations = 0
-        # st.session_state.prev_not_canceled = 0
-        # st.session_state.special_requests = 0
+        #set default values untuk semua input
+        st.session_state.no_of_adults = 2
+        st.session_state.no_of_children = 0
+        st.session_state.no_of_weekend_nights = 1
+        st.session_state.no_of_week_nights = 2
+        st.session_state.type_of_meal_plan = "-- Select Meal Plan --"
+        st.session_state.parking_space = "No"
+        st.session_state.room_type_reserved = "Room_Type 1"
+        st.session_state.booking_date = datetime.date(2017, 1, 1)
+        st.session_state.arrival_date = datetime.date(2017, 1, 8)
+        st.session_state.market_segment = "Online"
+        st.session_state.repeated_guest = "No"
+        st.session_state.prev_cancellations = 0
+        st.session_state.prev_not_canceled = 0
+        st.session_state.special_requests = 0
         
-        st.rerun()
-        
+        st.rerun()  #rerun streamlit
+
+    
     #simpan state button New Booking
     if st.session_state.new_booking_started:
         booking_id = st.session_state.booking_id
