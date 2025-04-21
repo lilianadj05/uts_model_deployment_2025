@@ -80,7 +80,7 @@ def main():
             st.warning("Arrival date must be after booking date.")
             lead_time = None
         elif arrival_date.year < 2017 or arrival_date.year > 2018:
-            st.warning("Arrival year must be 2017 aor 2018.")
+            st.warning("Arrival year must be 2017 or 2018.")
             lead_time = None
         else:
             lead_time = (arrival_date - booking_date).days
