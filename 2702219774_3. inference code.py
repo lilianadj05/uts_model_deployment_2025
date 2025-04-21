@@ -42,7 +42,7 @@ def main():
         st.session_state.new_booking_started = True
         st.session_state.booking_id = generate_booking_id()
         st.session_state.pop('avg_price_per_room', None)    #reset harga
-        
+        st.experimental_rerun()
         
     #simpan state button New Booking
     if st.session_state.new_booking_started:
