@@ -56,7 +56,7 @@ def main():
         )
         #untuk value Not Selected
         if type_of_meal_plan == "-- Select Meal Plan --":
-            type_of_meal_plan = 'Not Selected'
+            type_of_meal_plan = "Not Selected"
         
 
         required_car_parking_space = st.radio("Car Parking Required", ["Yes", "No"])
@@ -66,7 +66,7 @@ def main():
             required_car_parking_space = 0
 
 
-        room_type_reserved = st.selectbox("Room Type", ["Room_Type 1", "Room_Type 2", "Room_Type 3", "Room_Type 4"])
+        room_type_reserved = st.selectbox("Room Type", ["Room_Type 1", "Room_Type 2", "Room_Type 3", "Room_Type 4", "Room_Type 5", "Room_Type 6", "Room_Type 7"])
         
 
         #tanggal-tanggal dan menghitung lead_time
