@@ -144,7 +144,7 @@ def main():
             'no_of_children': int(no_of_children),
             'no_of_weekend_nights': int(no_of_weekend_nights),
             'no_of_week_nights': int(no_of_week_nights),
-            'type_of_meal_plan': int(type_of_meal_plan),
+            'type_of_meal_plan': [type_of_meal_plan],
             'required_car_parking_space': int(required_car_parking_space),
             'room_type_reserved': int(room_type_reserved),
             'lead_time': int(lead_time),
@@ -171,7 +171,6 @@ def main():
         for col in to_encode:
             enc = encoder[col]
             df[col] = enc.transform(df[col])
-        df['type_of_meal_plan'] = encoder['type_of_meal_plan'].transform(df['type_of_meal_plan'])
         
         if st.button('Make Prediction'):
             features = df      
