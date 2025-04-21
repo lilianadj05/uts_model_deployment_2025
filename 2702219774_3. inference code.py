@@ -174,10 +174,10 @@ def main():
         for col in to_encode:
             enc = encoder[col]
             df[col] = enc.transform(df[col])
-        
+
+        df = df.astype(int)
 
         if st.button('Make Prediction'):
-            st.write(df.dtypes)
             features = df      
             result = make_prediction(features)
             st.success(f'Booking Status: {result}')
