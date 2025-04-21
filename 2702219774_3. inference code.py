@@ -51,22 +51,21 @@ def main():
         st.session_state.prev_arrival_date = None
         
         # Set default values for all form inputs
-        st.session_state.no_of_adults = 2
-        st.session_state.no_of_children = 0
-        st.session_state.no_of_weekend_nights = 1
-        st.session_state.no_of_week_nights = 2
-        st.session_state.type_of_meal_plan = "-- Select Meal Plan --"
-        st.session_state.parking_space = "No"
-        st.session_state.room_type_reserved = "Room_Type 1"
-        st.session_state.booking_date = datetime.date(2017, 1, 1)
-        st.session_state.arrival_date = datetime.date(2017, 1, 8)
-        st.session_state.market_segment = "Online"
-        st.session_state.repeated_guest = "No"
-        st.session_state.prev_cancellations = 0
-        st.session_state.prev_not_canceled = 0
-        st.session_state.special_requests = 0
+        # st.session_state.no_of_adults = 2
+        # st.session_state.no_of_children = 0
+        # st.session_state.no_of_weekend_nights = 1
+        # st.session_state.no_of_week_nights = 2
+        # st.session_state.type_of_meal_plan = "-- Select Meal Plan --"
+        # st.session_state.parking_space = "No"
+        # st.session_state.room_type_reserved = "Room_Type 1"
+        # st.session_state.booking_date = datetime.date(2017, 1, 1)
+        # st.session_state.arrival_date = datetime.date(2017, 1, 8)
+        # st.session_state.market_segment = "Online"
+        # st.session_state.repeated_guest = "No"
+        # st.session_state.prev_cancellations = 0
+        # st.session_state.prev_not_canceled = 0
+        # st.session_state.special_requests = 0
         
-        # Force page refresh
         st.rerun()
         
     #simpan state button New Booking
