@@ -34,6 +34,7 @@ def main():
 
     #simpan state button New Booking
     if st.session_state.new_booking_started:
+        booking_id = st.session_state.booking_id
         st.write(f"New Booking ID: {booking_id}")
 
 
