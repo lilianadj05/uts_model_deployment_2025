@@ -35,10 +35,8 @@ def main():
     #button New Booking
     if st.button('New Booking'):
         #bersihkan semua session state kecuali model dan encoder
-        keys_to_keep = ['model', 'encoder']
         for key in list(st.session_state.keys()):
-            if key not in keys_to_keep:
-                del st.session_state[key]
+            del st.session_state[key]
         
         # Inisialisasi ulang state yang diperlukan
         st.session_state.new_booking_started = True
@@ -51,43 +49,49 @@ def main():
         booking_id = st.session_state.booking_id
         st.write(f"New Booking ID: {booking_id}")
 
-
-        no_of_adults = st.number_input("Number of Adults", min_value=0, value=2)
-        no_of_children = st.number_input("Number of Children", min_value=0, value=0)
-        no_of_weekend_nights = st.number_input("Weekend Nights", min_value=0, value=1)
-        no_of_week_nights = st.number_input("Week Nights", min_value=0, value=2)
+        
+        no_of_adults = st.number_input("Number of Adults", min_value=0, value=2, key='no_of_adults')
+        no_of_children = st.number_input("Number of Children", min_value=0, value=0, key='no_of_children')
+        no_of_weekend_nights = st.number_input("Weekend Nights", min_value=0, value=1, key='no_of_weekend_nights')
+        no_of_week_nights = st.number_input("Week Nights", min_value=0, value=2, key='no_of_week_nights')
         
         
         type_of_meal_plan = st.selectbox(
             "Meal Plan",
-            ["-- Select Meal Plan --", "Meal Plan 1", "Meal Plan 2", "Meal Plan 3"]
+            ["-- Select Meal Plan --", "Meal Plan 1", "Meal Plan 2", "Meal Plan 3"],
+            key='type_of_meal_plan'
         )
         #untuk value Not Selected
         if type_of_meal_plan == "-- Select Meal Plan --":
             type_of_meal_plan = "Not Selected"
         
 
-        required_car_parking_space = st.radio("Car Parking Required", ["Yes", "No"])
+        required_car_parking_space = st.radio("Car Parking Required", ["Yes", "No"], key='parking_space')
         if required_car_parking_space == "-Yes":
             required_car_parking_space = 1
         else:
             required_car_parking_space = 0
 
 
-        room_type_reserved = st.selectbox("Room Type", ["Room_Type 1", "Room_Type 2", "Room_Type 3", "Room_Type 4", "Room_Type 5", "Room_Type 6", "Room_Type 7"])
-        
+        room_type_reserved = st.selectbox(
+            "Room Type",
+            ["Room_Type 1", "Room_Type 2", "Room_Type 3", "Room_Type 4", "Room_Type 5", "Room_Type 6", "Room_Type 7"],
+            key='room_type_reserved'
+        )        
 
         #tanggal-tanggal dan menghitung lead_time
         max_booking_date = datetime.date(2018, 12, 31)
         booking_date = st.date_input(
             "Booking Date",
             value=datetime.date(2017, 1, 1),
-            max_value=max_booking_date
+            max_value=max_booking_date,
+            key='booking_date'
         )
         arrival_date = st.date_input(
             "Arrival Date",
             value=booking_date + datetime.timedelta(days=7),
-            min_value=booking_date
+            min_value=booking_date,
+            key='arrival_date'
         )
 
         if arrival_date <= booking_date:
@@ -107,18 +111,22 @@ def main():
             st.session_state.arrival_month = arrival_month
             
 
-        market_segment_type = st.selectbox("Market Segment", ["Online", "Offline", "Corporate", "Aviation", "Complementary"])
+        market_segment_type = st.selectbox(
+            "Market Segment",
+            ["Online", "Offline", "Corporate", "Aviation", "Complementary"],
+            key='market_segment'
+        )
         
 
-        repeated_guest = st.radio("Repeated Guest", ["Yes", "No"])
+        repeated_guest = st.radio("Repeated Guest", ["Yes", "No"], key='repeated_guest')
         if repeated_guest == "-Yes":
             repeated_guest = 1
         else:
             repeated_guest = 0
         
 
-        no_of_previous_cancellations = st.number_input("Previous Cancellations", min_value=0, value=0)
-        no_of_previous_bookings_not_canceled = st.number_input("Previous Non-Canceled", min_value=0, value=0)
+        no_of_previous_cancellations = st.number_input("Previous Cancellations", min_value=0, value=0, key='prev_cancellations')
+        no_of_previous_bookings_not_canceled = st.number_input("Previous Non-Canceled", min_value=0, value=0, key='prev_not_canceled')
         
 
         #avg_price_per_room berdasarkan arrival_month
@@ -144,7 +152,7 @@ def main():
         st.write(f"Average Price per Room: {avg_price_per_room}")
 
         
-        no_of_special_requests = st.number_input("Number of Special Requests", min_value=0, value=0)
+        no_of_special_requests = st.number_input("Number of Special Requests", min_value=0, value=0, key='special_requests')
         
         
         user_input = {
